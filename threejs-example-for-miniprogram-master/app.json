@@ -1,0 +1,22 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/primitives/index",
+    "pages/cube/index",
+    "pages/glb/index",
+    "pages/gltf/index",
+    "pages/ngltf/index",
+    "pages/obj/index",
+    "pages/animation/index",
+    "pages/trackcontrol/index",
+    "pages/raycaster/index",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json"
+}

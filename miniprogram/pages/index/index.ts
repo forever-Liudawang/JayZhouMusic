@@ -5,6 +5,7 @@ const app = getApp<IAppOption>()
 Page({
   data: {
     motto: 'Hello World',
+    num:10,
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
@@ -18,6 +19,8 @@ Page({
     })
   },
   onLoad() {
+    const appInstance = getApp()
+    console.log(appInstance.globalData,'data')
     // @ts-ignore
     if (wx.getUserProfile) {
       this.setData({
@@ -44,6 +47,11 @@ Page({
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
+    })
+  },
+  add() {
+    this.setData({
+      num: this.data.num+1
     })
   }
 })
