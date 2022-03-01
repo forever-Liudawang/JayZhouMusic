@@ -1,9 +1,6 @@
 {
   "pages": [
-    "pages/obj/obj",
-    "pages/index/index",
-    "pages/logs/logs",
-    "pages/music/music"
+    "pages/index/index"
   ],
   "window": {
     "backgroundTextStyle": "dark",

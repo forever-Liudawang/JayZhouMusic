@@ -2,56 +2,88 @@
 // 获取应用实例
 const app = getApp<IAppOption>()
 
-Page({
+Page<any,any>({
   data: {
-    motto: 'Hello World',
-    num:10,
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    canIUseGetUserProfile: false,
-    canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName') // 如需尝试获取用户信息可改为false
-  },
-  // 事件处理函数
-  bindViewTap() {
-    wx.navigateTo({
-      url: '../logs/logs',
-    })
+    audio: {},
+    circleLeft: {},
+    barWidth: {},
+    duration: {},
+    currentTime: null,
+    isTimerPlaying: false,
+    tracks: [
+      {
+        name: "Mekanın Sahibi",
+        artist: "Norm Ender",
+        cover: "https://www.17sucai.com/preview/776298/2020-12-28/mp/img/1.jpg",
+        source: "https://physical-authority.surge.sh/music/1.mp3",
+        url: "https://www.17sucai.com/",
+        favorited: false
+      },
+      {
+        name: "Everybody Knows",
+        artist: "Leonard Cohen",
+        cover: "https://www.17sucai.com/preview/776298/2020-12-28/mp/img/2.jpg",
+        source: "https://physical-authority.surge.sh/music/2.mp3",
+        url: "https://www.17sucai.com/",
+        favorited: true
+      },
+      {
+        name: "Extreme Ways",
+        artist: "Moby",
+        cover: "https://www.17sucai.com/preview/776298/2020-12-28/mp/img/3.jpg",
+        source: "https://physical-authority.surge.sh/music/3.mp3",
+        url: "https://www.17sucai.com/",
+        favorited: false
+      },
+      {
+        name: "Butterflies",
+        artist: "Sia",
+        cover: "https://www.17sucai.com/preview/776298/2020-12-28/mp/img/4.jpg",
+        source: "https://physical-authority.surge.sh/music/4.mp3",
+        url: "https://www.17sucai.com/",
+        favorited: false
+      },
+      {
+        name: "The Final Victory",
+        artist: "Haggard",
+        cover: "https://www.17sucai.com/preview/776298/2020-12-28/mp/img/5.jpg",
+        source: "https://physical-authority.surge.sh/music/5.mp3",
+        url: "https://www.17sucai.com/",
+        favorited: true
+      },
+      {
+        name: "Genius ft. Sia, Diplo, Labrinth",
+        artist: "LSD",
+        cover: "https://www.17sucai.com/preview/776298/2020-12-28/mp/img/6.jpg",
+        source: "https://physical-authority.surge.sh/music/6.mp3",
+        url: "https://www.17sucai.com/",
+        favorited: false
+      },
+      {
+        name: "Rag'n'Bone Man",
+        artist: "Human",
+        cover: "https://www.17sucai.com/preview/776298/2020-12-28/mp/img/7.jpg",
+        source: "https://physical-authority.surge.sh/music/7.mp3",
+        url: "https://www.17sucai.com/",
+        favorited: false
+      }
+    ],
+    currentTrack: null,
+    currentTrackIndex: 0,
+    transitionName: null  
   },
   onLoad() {
     const appInstance = getApp()
+    console.log(this.audio)
     console.log(appInstance.globalData,'data')
-    // @ts-ignore
-    if (wx.getUserProfile) {
-      this.setData({
-        canIUseGetUserProfile: true
-      })
+  },
+  play() {
+    if (this.data.audio.paused) {
+      this.data.audio.play();
+      this.data.isTimerPlaying = true;
+    } else {
+      this.data.audio.pause();
+      this.data.isTimerPlaying = false;
     }
   },
-  getUserProfile() {
-    // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
-    wx.getUserProfile({
-      desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-      success: (res) => {
-        console.log(res)
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    })
-  },
-  getUserInfo(e: any) {
-    // 不推荐使用getUserInfo获取用户信息，预计自2021年4月13日起，getUserInfo将不再弹出弹窗，并直接返回匿名的用户个人信息
-    console.log(e)
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
-  },
-  add() {
-    this.setData({
-      num: this.data.num+1
-    })
-  }
 })

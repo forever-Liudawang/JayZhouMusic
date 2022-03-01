@@ -3,11 +3,8 @@
     "packOptions": {
         "ignore": []
     },
-    "miniprogramRoot": "miniprogram/",
-    "compileType": "miniprogram",
-    "projectname": "JayZhou",
     "setting": {
-        "urlCheck": false,
+        "urlCheck": true,
         "es6": true,
         "enhance": true,
         "postcss": true,
@@ -23,7 +20,7 @@
         "checkInvalidKey": true,
         "checkSiteMap": true,
         "uploadWithSourceMap": true,
-        "compileHotReLoad": true,
+        "compileHotReLoad": false,
         "lazyloadPlaceholderEnable": false,
         "useMultiFrameRuntime": true,
         "useApiHook": true,
@@ -41,14 +38,40 @@
         "disableUseStrict": false,
         "minifyWXML": true,
         "showES6CompileOption": false,
-        "useCompilerPlugins": [
-            "typescript",
-            "sass"
-        ],
+        "useCompilerPlugins": false,
         "ignoreUploadUnusedFiles": true
     },
-    "simulatorType": "wechat",
-    "simulatorPluginLibVersion": {},
+    "compileType": "miniprogram",
+    "libVersion": "2.22.1",
     "appid": "wxdb1b9cb669fc68a3",
-    "condition": {}
+    "projectname": "miniprogram",
+    "debugOptions": {
+        "hidedInDevtools": []
+    },
+    "scripts": {},
+    "staticServerOptions": {
+        "baseURL": "",
+        "servePath": ""
+    },
+    "isGameTourist": false,
+    "condition": {
+        "search": {
+            "list": []
+        },
+        "conversation": {
+            "list": []
+        },
+        "game": {
+            "list": []
+        },
+        "plugin": {
+            "list": []
+        },
+        "gamePlugin": {
+            "list": []
+        },
+        "miniprogram": {
+            "list": []
+        }
+    }
 }
