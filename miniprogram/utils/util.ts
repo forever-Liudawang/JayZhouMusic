@@ -31,6 +31,4 @@ const Test = ()=>{
 //这是v1特有代码
 const b = 100
 
-const c = 200
-const d = 300
-const e = 400
+//v2.0.1
