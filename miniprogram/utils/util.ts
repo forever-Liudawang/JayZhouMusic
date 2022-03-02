@@ -20,3 +20,9 @@ const formatNumber = (n: number) => {
 const test = ()=>{
   console.log('1233', 1233)
 }
+const testV2 = ()=>{
+  console.log('1233', 1233)
+}
+const Test = ()=>{
+  
+}
