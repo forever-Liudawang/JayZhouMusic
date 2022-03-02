@@ -12,12 +12,13 @@
           <view class="player-controls__item arrow" bind:tap="prevTrack">
             <image src="../../static/left.svg"></image>
           </view>
+          <view class="player-controls__item arrow" bind:tap="play">
+            <image src="../../static/play.svg"></image>
+          </view>
           <view class="player-controls__item arrow" bind:tap="nextTrack">
             <image src="../../static/right.svg"></image>
           </view>
-          <view class="player-controls__item -xl js-play" bind:tap="play">
-           
-          </view>
+          
         </view>
         <view class="progress-box">
           <progress percent="80" color="#10AEFF" active stroke-width="3" />
