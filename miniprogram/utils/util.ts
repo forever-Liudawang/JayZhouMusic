@@ -24,3 +24,9 @@ const testV2 = ()=>{
   console.log('1233', 1233)
 }
 const a = 10;
+const Test = ()=>{
+  
+}
+
+//这是v1特有代码
+const b = 100
