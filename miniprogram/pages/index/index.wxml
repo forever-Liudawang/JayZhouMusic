@@ -9,19 +9,26 @@
           </transition-group>
         </view>
         <view class="player-controls">
-          <view class="player-controls__item arrow" bind:tap="prevTrack">
+          <view class="btn" bind:tap="prevTrack">
             <image src="../../static/left.svg"></image>
           </view>
-          <view class="player-controls__item arrow" bind:tap="play">
-            <image src="../../static/play.svg"></image>
+          <view class="btn" bind:tap="play" >
+            <image src="../../static/play.svg" wx:if="{{!audioCtx && audioCtx.paused}}"></image>
+            <image src="../../static/stop.svg" wx:else></image>
           </view>
-          <view class="player-controls__item arrow" bind:tap="nextTrack">
+          <view class="btn" bind:tap="nextTrack">
             <image src="../../static/right.svg"></image>
           </view>
-          
         </view>
         <view class="progress-box">
-          <progress percent="80" color="#10AEFF" active stroke-width="3" />
+          <ProgressBar/>
+          <!-- <text>
+            {{currentTime}}
+          </text>
+          <progress percent="{{percent}}" color="#999" active stroke-width="6" border-radius="5" />
+          <text>
+            {{duration}}
+          </text> -->
         </view>
       </view>
     </view>

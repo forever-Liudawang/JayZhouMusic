@@ -9,6 +9,7 @@ Page<any, any>({
     barWidth: {},
     duration: {},
     currentTime: null,
+    percent: 0,
     isTimerPlaying: false,
     tracks: [
       {
@@ -77,7 +78,6 @@ Page<any, any>({
   onLoad() {
     const appInstance = getApp();
     this.init()
-    console.log(appInstance.globalData, "data");
   },
   init() {
     const ctx = wx.createInnerAudioContext()
@@ -85,14 +85,13 @@ Page<any, any>({
     let vm = this;
     this.data.currentTrack = this.data.tracks[0];
     this.data.bgImg = this.data.tracks[0]['cover']
-    console.log('this.da', this.data.tracks[0]['cover'])
-    // this.data.audio = new Audio();
-    // this.data.audio.src = this.data.currentTrack.source;
-    ctx.src =  this.data.currentTrack.source;
+    ctx.src =  this.data.tracks[0]['source'];
     ctx.onTimeUpdate((e)=>{
+      console.log('e', e)
       vm.generateTime();
     })
     ctx.onCanplay(()=>{
+      console.log('canplay ')
       // this.data.audioCtx.play()
       vm.generateTime();
     })
@@ -107,18 +106,25 @@ Page<any, any>({
     };
   },
   play() {
-    if (this.data.audio.paused) {
-      this.data.audio.play();
+    console.log('this.data.audioCtx.paused', this.data.audioCtx.paused)
+    if (this.data.audioCtx.paused) {
+      this.data.audioCtx.play();
       this.data.isTimerPlaying = true;
     } else {
-      this.data.audio.pause();
+      this.data.audioCtx.pause();
       this.data.isTimerPlaying = false;
     }
   },
   generateTime() {
-    let width = (100 / this.data.audioCtx.duration) * this.data.audioCtx.currentTime;
-    this.data.barWidth = width + "%";
-    this.data.circleLeft = width + "%";
+    console.log('this.data.audioCtx.currentTime', this.data.audioCtx.currentTime)
+    console.log('this.data.audioCtx.duration', this.data.audioCtx.duration)
+    const percent = this.data.audioCtx.currentTime / this.data.audioCtx.duration * 100
+    this.setData({
+      percent
+    })
+    console.log('percent', percent)
+    // this.data.barWidth = width + "%";
+    // this.data.circleLeft = width + "%";
     let durmin: string | number = Math.floor(this.data.audioCtx.duration / 60);
     let dursec: string | number = Math.floor(
       this.data.audioCtx.duration - durmin * 60
