@@ -32,3 +32,6 @@ const Test = ()=>{
 const b = 100
 
 //v2.0.1
+
+const c = 1000000
+const h = 10000000
