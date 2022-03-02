@@ -1,6 +1,9 @@
 <!-- index.wxml -->
 <view>
   <view class="wrapper" id="app">
+    <!-- <view class="gc" hover-class="none" hover-stop-propagation="false">
+      12
+    </view> -->
     <view class="player">
       <view class="player__top" hover-class="none" hover-stop-propagation="false">
         <view class="player-cover">
@@ -13,22 +16,15 @@
             <image src="../../static/left.svg"></image>
           </view>
           <view class="btn" bind:tap="play" >
-            <image src="../../static/play.svg" wx:if="{{!audioCtx && audioCtx.paused}}"></image>
+            <image src="../../static/play.svg" wx:if="{{!isTimerPlaying}}"></image>
             <image src="../../static/stop.svg" wx:else></image>
           </view>
           <view class="btn" bind:tap="nextTrack">
             <image src="../../static/right.svg"></image>
           </view>
         </view>
-        <view class="progress-box">
-          <ProgressBar/>
-          <!-- <text>
-            {{currentTime}}
-          </text>
-          <progress percent="{{percent}}" color="#999" active stroke-width="6" border-radius="5" />
-          <text>
-            {{duration}}
-          </text> -->
+        <view class="progress-box" style="margin-top:30px">
+          <ProgressBar percent="{{percent}}" />
         </view>
       </view>
     </view>

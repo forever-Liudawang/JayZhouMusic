@@ -16,7 +16,8 @@ Page<any, any>({
         name: "Mekanın Sahibi",
         artist: "Norm Ender",
         cover: "https://www.17sucai.com/preview/776298/2020-12-28/mp/img/1.jpg",
-        source: "http://blog-andy-liu.oss-cn-beijing.aliyuncs.com/jayZhou/jayZhou/%E4%B8%89%E5%B9%B4%E4%BA%8C%E7%8F%AD.mp3",
+        source:
+          "http://blog-andy-liu.oss-cn-beijing.aliyuncs.com/jayZhou/jayZhou/%E4%B8%89%E5%B9%B4%E4%BA%8C%E7%8F%AD.mp3",
         url: "https://www.17sucai.com/",
         favorited: false,
       },
@@ -73,63 +74,67 @@ Page<any, any>({
     currentTrackIndex: 0,
     transitionName: null,
     audioCtx: null,
-    bgImg: ""
+    bgImg: "",
   },
   onLoad() {
     const appInstance = getApp();
-    this.init()
+    this.init();
   },
   init() {
-    const ctx = wx.createInnerAudioContext()
+    const ctx = wx.createInnerAudioContext();
     this.data.audioCtx = ctx;
     let vm = this;
     this.data.currentTrack = this.data.tracks[0];
-    this.data.bgImg = this.data.tracks[0]['cover']
-    ctx.src =  this.data.tracks[0]['source'];
-    ctx.onTimeUpdate((e)=>{
-      console.log('e', e)
+    this.data.bgImg = this.data.tracks[0]["cover"];
+    ctx.src = this.data.tracks[0]["source"];
+    ctx.onTimeUpdate((e) => {
+      console.log("e", e);
       vm.generateTime();
-    })
-    ctx.onCanplay(()=>{
-      console.log('canplay ')
+    });
+    ctx.onCanplay(() => {
       // this.data.audioCtx.play()
       vm.generateTime();
-    })
-    ctx.onEnded(()=>{
+    });
+    ctx.onEnded(() => {
       vm.nextTrack();
       this.data.isTimerPlaying = true;
-    })
-    
-    this.data.audio.onended = function() {
+    });
+
+    this.data.audio.onended = function () {
       vm.nextTrack();
       this.data.isTimerPlaying = true;
     };
   },
   play() {
-    console.log('this.data.audioCtx.paused', this.data.audioCtx.paused)
     if (this.data.audioCtx.paused) {
       this.data.audioCtx.play();
+      this.setData({
+        isTimerPlaying: true,
+      });
       this.data.isTimerPlaying = true;
     } else {
       this.data.audioCtx.pause();
-      this.data.isTimerPlaying = false;
+      this.setData({
+        isTimerPlaying: false,
+      });
     }
   },
   generateTime() {
-    console.log('this.data.audioCtx.currentTime', this.data.audioCtx.currentTime)
-    console.log('this.data.audioCtx.duration', this.data.audioCtx.duration)
-    const percent = this.data.audioCtx.currentTime / this.data.audioCtx.duration * 100
+    const percent =
+      (this.data.audioCtx.currentTime / this.data.audioCtx.duration) * 100;
+    console.log(percent, "percent");
     this.setData({
-      percent
-    })
-    console.log('percent', percent)
+      percent,
+    });
     // this.data.barWidth = width + "%";
     // this.data.circleLeft = width + "%";
     let durmin: string | number = Math.floor(this.data.audioCtx.duration / 60);
     let dursec: string | number = Math.floor(
       this.data.audioCtx.duration - durmin * 60
     );
-    let curmin: string | number = Math.floor(this.data.audioCtx.currentTime / 60);
+    let curmin: string | number = Math.floor(
+      this.data.audioCtx.currentTime / 60
+    );
     let cursec: string | number = Math.floor(
       this.data.audioCtx.currentTime - curmin * 60
     );
@@ -205,4 +210,7 @@ Page<any, any>({
       }
     }, 300);
   },
+  onHide(){
+    console.log('123', 123)
+  }
 });

@@ -1,4 +1,4 @@
 <!--component/ProgressBar/ProgressBar.wxml-->
-<view class="" >
-    progressBar111
+<view class="progressBar" >
+    <canvas type="2d" style="width:100%" canvas-id="lineCanvas" id="lineCanvas" />
 </view>

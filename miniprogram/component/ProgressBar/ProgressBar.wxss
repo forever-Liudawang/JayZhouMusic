@@ -1,1 +1,4 @@
 /* component/ProgressBar/ProgressBar.wxss */
+.progressBar{
+    /* color: rgb(252, 115, 2); */
+}

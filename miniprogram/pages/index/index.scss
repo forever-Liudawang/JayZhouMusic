@@ -40,7 +40,10 @@ body {
     flex-direction: column;
   }
 }
-
+.gc{
+  height: 100px;
+  width: 100%;
+}
 .player {
   background: #eef3f7;
   width: 100%;
@@ -73,11 +76,12 @@ body {
 .player-cover {
   width: 300px;
   height: 300px;
-  margin-left: -70px;
+  margin-left: -30px;
   flex-shrink: 0;
   position: relative;
   z-index: 2;
   border-radius: 15px;
+  box-shadow: 0px 15px 35px -5px rgba(50, 88, 130, 0.32);
   z-index: 1;
 }
 @media screen and (max-width: 576px), (max-height: 500px) {
