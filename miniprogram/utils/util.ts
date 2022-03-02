@@ -23,6 +23,3 @@ const test = ()=>{
 const testV2 = ()=>{
   console.log('1233', 1233)
 }
-const Test = ()=>{
-  
-}
