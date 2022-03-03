@@ -88,7 +88,6 @@ Page<any, any>({
     this.data.bgImg = this.data.tracks[0]["cover"];
     ctx.src = this.data.tracks[0]["source"];
     ctx.onTimeUpdate((e) => {
-      console.log("e", e);
       vm.generateTime();
     });
     ctx.onCanplay(() => {
@@ -122,7 +121,6 @@ Page<any, any>({
   generateTime() {
     const percent =
       (this.data.audioCtx.currentTime / this.data.audioCtx.duration) * 100;
-    console.log(percent, "percent");
     this.setData({
       percent,
     });
@@ -150,30 +148,10 @@ Page<any, any>({
     if (cursec < 10) {
       cursec = "0" + cursec;
     }
-    this.data.duration = durmin + ":" + dursec;
-    this.data.currentTime = curmin + ":" + cursec;
-  },
-  updateBar(x: number) {
-    //
-    let progress = this.$refs.progress;
-    let maxduration = this.data.audio.duration;
-    let position = x - progress.offsetLeft;
-    let percentage = (100 * position) / progress.offsetWidth;
-    if (percentage > 100) {
-      percentage = 100;
-    }
-    if (percentage < 0) {
-      percentage = 0;
-    }
-    this.data.barWidth = percentage + "%";
-    this.data.circleLeft = percentage + "%";
-    this.data.audioCtx.currentTime = (maxduration * percentage) / 100;
-    this.data.audioCtx.play();
-  },
-  clickProgress(e: { pageX: any }) {
-    this.data.isTimerPlaying = true;
-    this.data.audioCtx.pause();
-    this.updateBar(e.pageX);
+    this.setData({
+      duration:durmin + ":" + dursec,
+      currentTime: curmin + ":" + cursec
+    })
   },
   prevTrack() {
     this.data.transitionName = "scale-in";
@@ -196,6 +174,11 @@ Page<any, any>({
     }
     this.data.currentTrack = this.data.tracks[this.data.currentTrackIndex];
     this.resetPlayer();
+  },
+  updateMusicProgress(e:any) {
+    const percent = e.detail.currentPercent
+    const currentTimer = percent/100 * this.data.audioCtx.duration
+    this.data.audioCtx.seek(currentTimer)
   },
   resetPlayer() {
     this.data.barWidth = 0;

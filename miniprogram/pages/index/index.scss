@@ -33,6 +33,13 @@ body {
 }
 .progress-box{
   width: 100%;
+  display: flex;
+  justify-content:space-between;
+  .time,.progressBar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 @media screen and (max-width: 700px), (max-height: 500px) {
   .wrapper {

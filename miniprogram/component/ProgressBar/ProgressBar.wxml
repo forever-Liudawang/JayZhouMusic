@@ -1,4 +1,9 @@
 <!--component/ProgressBar/ProgressBar.wxml-->
 <view class="progressBar" >
-    <canvas type="2d" style="width:100%" canvas-id="lineCanvas" id="lineCanvas" />
+    <canvas type="2d" style="width:100%;height:32rpx" 
+    canvas-id="lineCanvas" 
+    id="lineCanvas" 
+    bindtouchstart="handBindtouchstart" 
+    bindtouchmove="handBindtouchmove"
+    />
 </view>
